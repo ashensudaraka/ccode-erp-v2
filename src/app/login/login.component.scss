@@ -1,0 +1,45 @@
+body {
+    background-image: "url(https://wallpapercave.com/wp/wp4645033.jpg)";
+    //opacity: 0.7;
+    overflow: hidden;
+}
+
+.heading {
+    color: white;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+    font-size: 40px;
+    margin-top: 20px;
+}
+
+.headingRow {
+    background-color: #1569c7;
+    overflow: hidden;
+}
+
+.login {
+    margin-top: 50px;
+}
+
+.loginCard {
+    //opacity: 0.9;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.welcomeHeading {
+    margin-top: 25px;
+    font-size: 30px;
+    color: grey;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+.loginBtn {
+    width: 100%;
+    margin-top: 5px;
+}
+
+.forgotPasswordBtn {
+    width: 100%;
+}

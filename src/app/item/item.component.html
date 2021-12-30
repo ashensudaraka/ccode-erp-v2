@@ -1,0 +1,382 @@
+<mat-toolbar>
+    <span>Items</span>
+    <span class="example-spacer"></span>
+    <button mat-raised-button color="primary" (click)="displayAddItem()">Add Item</button>
+</mat-toolbar>
+<mat-divider></mat-divider>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-7">
+
+            <div class="form-row">
+                <!--Search Area-->
+                <div class="col-4 searchArea">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Search by Code</mat-label>
+                        <input matInput placeholder="Enter Item Code" [(ngModel)]="searchItemCode">
+                        <button mat-button mat-icon-button matSuffix>
+                                    <mat-icon>search</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-4 searchArea">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Search by Name</mat-label>
+                        <input matInput placeholder="Enter Item Name" [(ngModel)]="searchItemName">
+                        <button mat-button mat-icon-button matSuffix>
+                            <mat-icon>search</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-4 searchArea">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Search by Type</mat-label>
+                        <input matInput placeholder="Enter Item Type" [(ngModel)]="searchItemType">
+                        <button mat-button mat-icon-button matSuffix>
+                            <mat-icon>search</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </div>
+
+            </div>
+
+            <!--Table Area-->
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="mat-elevation-z8">
+                        <table mat-table [dataSource]="itemArray">
+
+                            <!-- Item Code Column -->
+                            <ng-container matColumnDef="itemCode">
+                                <th mat-header-cell *matHeaderCellDef>Item Code</th>
+                                <td mat-cell *matCellDef="let element"> {{element.itemCode}} </td>
+                            </ng-container>
+
+                            <!-- Item Name Column -->
+                            <ng-container matColumnDef="itemName">
+                                <th mat-header-cell *matHeaderCellDef>Item Name</th>
+                                <td mat-cell *matCellDef="let element"> {{element.itemName}} </td>
+                            </ng-container>
+
+                            <!-- Description Column -->
+                            <ng-container matColumnDef="description">
+                                <th mat-header-cell *matHeaderCellDef>Description</th>
+                                <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+
+                        <mat-paginator [length]="100" [pageSize]="4" [pageSizeOptions]="[3, 10, 20]" showFirstLastButtons></mat-paginator>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!--Details Area-->
+        <div class="col-5">
+            <!--Display item detail-->
+            <div class="displayItemArea" *ngIf="displayItemArea">
+                <div class="row">
+                    <div class="col-8">
+                        <p class="detailHeading">Item Details</p>
+                    </div>
+                    <div class="col-4 optionsArea">
+                        <!-- <button type="button" class="btn btn-sm btn-primary editBtn" (click)="getRowData()"><i class="fas fa-edit"></i></button>
+                        <button type="button" class="btn btn-sm btn-danger deleteBtn"><i class="fas fa-trash-alt"></i></button> -->
+                        <button mat-mini-fab color="primary" class="editBtn"><mat-icon>edit</mat-icon></button>
+                        <button mat-mini-fab color="warn" class="deleteBtn"><mat-icon>delete</mat-icon></button>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="form-row">
+
+                    <div class="col-4">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Item Code</mat-label>
+                            <input matInput placeholder="Enter Item Code" [(ngModel)]="itemCode">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-8">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Item Name</mat-label>
+                            <input matInput placeholder="Enter Item Name" [(ngModel)]="itemName">
+                        </mat-form-field>
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+
+                    <div class="col-4">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Item Type</mat-label>
+                            <input matInput placeholder="Enter Item Type" [(ngModel)]="itemType">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-8">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Description</mat-label>
+                            <input matInput placeholder="Enter Description" [(ngModel)]="description">
+                        </mat-form-field>
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+
+                    <div class="col-6">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Buy Price</mat-label>
+                            <input matInput placeholder="Enter Buy Price" [(ngModel)]="buyPrice">
+                            <span matPrefix>Rs.&nbsp;</span>
+                            <span matSuffix>.00</span>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-6">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Sell Price</mat-label>
+                            <input matInput placeholder="Enter Sell Price" [(ngModel)]="sellPrice">
+                            <span matPrefix>Rs.&nbsp;</span>
+                            <span matSuffix>.00</span>
+                        </mat-form-field>
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+
+                    <div class="col-3">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Uom</mat-label>
+                            <input matInput placeholder="Enter UoM" [(ngModel)]="uom">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-9">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Bar Code</mat-label>
+                            <input matInput placeholder="Enter Bar Code" [(ngModel)]="barCode">
+                        </mat-form-field>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <!--Add item detail-->
+            <div class="addItemArea" *ngIf="addItemArea">
+                <div class="row">
+                    <div class="col-8">
+                        <p class="detailHeading">Add New Item Details</p>
+                    </div>
+                    <div class="col-4 optionsArea">
+
+                    </div>
+                </div>
+                <hr>
+
+                <form (ngSubmit)="addItem(myForm1)" #myForm1="ngForm">
+                    <div class="form-row">
+
+                        <div class="col-12">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Item Name</mat-label>
+                                <input matInput placeholder="Enter Item Name" [(ngModel)]="addItemName" name="addItemName" #aItemName="ngModel" required>
+                                <mat-error *ngIf="aItemName.hasError('required')">required</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+
+                    <div class="form-row">
+
+                        <div class="col-4">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Item Type</mat-label>
+                                <input matInput placeholder="Enter Item Type" [(ngModel)]="addItemType" name="addItemType" #aItemType="ngModel" required>
+                                <mat-error *ngIf="aItemType.hasError('required')">required</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-8">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Description</mat-label>
+                                <input matInput placeholder="Enter Description" [(ngModel)]="addDescription" name="addDescription" #aDescription="ngModel" required>
+                                <mat-error *ngIf="aDescription.hasError('required')">required</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+
+                    <div class="form-row">
+
+                        <div class="col-6">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Buy Price</mat-label>
+                                <input matInput placeholder="Enter Buy Price" [(ngModel)]="addBuyPrice" name="addBuyPrice" #aBuyPrice="ngModel" required>
+                                <span matPrefix>Rs.&nbsp;</span>
+                                <span matSuffix>.00</span>
+                                <mat-error *ngIf="aBuyPrice.hasError('required')">required</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-6">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Sell Price</mat-label>
+                                <input matInput placeholder="Enter Sell Price" [(ngModel)]="addSellPrice" name="addSellPrice" #aSellPrice="ngModel" required>
+                                <span matPrefix>Rs.&nbsp;</span>
+                                <span matSuffix>.00</span>
+                                <mat-error *ngIf="aSellPrice.hasError('required')">required</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+
+                    <div class="form-row">
+
+                        <div class="col-3">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Uom</mat-label>
+                                <input matInput placeholder="Enter UoM" [(ngModel)]="addUom" name="addUom" #aUom="ngModel" required>
+                                <mat-error *ngIf="aUom.hasError('required')">required</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-9">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Bar Code</mat-label>
+                                <input matInput placeholder="Enter Bar Code" [(ngModel)]="addBarCode" name="addBarCode" #aBarCode="ngModel" required>
+                                <mat-error *ngIf="aBarCode.hasError('required')">required</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-12" style="text-align: right;">
+                            <button mat-raised-button class="cancelBtn" (click)="cancelAddItem()">Cancel</button>
+                            <button mat-raised-button type="submit" color="primary" class="addBtn">Add</button>
+                        </div>
+                    </div>
+
+                </form>
+
+
+            </div>
+
+            <!--Update item detail-->
+            <div class="updateItemArea" *ngIf="updateItemArea">
+                <div class="row">
+                    <div class="col-8">
+                        <p class="detailHeading">Update Item Details</p>
+                    </div>
+                    <div class="col-4 optionsArea">
+
+                    </div>
+                </div>
+                <hr>
+
+                <form (ngSubmit)="updateItem(myForm2)" #myForm2="ngForm">
+                    <div class="form-row">
+
+                        <div class="col-12">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Item Name</mat-label>
+                                <input matInput placeholder="Enter Item Name" [(ngModel)]="updateItemName" name="updateItemName" #uItemName="ngModel" required>
+                                <mat-error *ngIf="uItemName.hasError('required')">required</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+
+                    <div class="form-row">
+
+                        <div class="col-4">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Item Type</mat-label>
+                                <input matInput placeholder="Enter Item Type" [(ngModel)]="updateItemType" name="updateItemType" #uItemType="ngModel" required>
+                                <mat-error *ngIf="uItemType.hasError('required')">required</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-8">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Description</mat-label>
+                                <input matInput placeholder="Enter Description" [(ngModel)]="updateDescription" name="updateDescription" #uDescription="ngModel" required>
+                                <mat-error *ngIf="uDescription.hasError('required')">required</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+
+                    <div class="form-row">
+
+                        <div class="col-6">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Buy Price</mat-label>
+                                <input matInput placeholder="Enter Buy Price" [(ngModel)]="updateBuyPrice" name="updateBuyPrice" #uBuyPrice="ngModel" required>
+                                <span matPrefix>Rs.&nbsp;</span>
+                                <span matSuffix>.00</span>
+                                <mat-error *ngIf="uBuyPrice.hasError('required')">required</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-6">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Sell Price</mat-label>
+                                <input matInput placeholder="Enter Sell Price" [(ngModel)]="updateSellPrice" name="updateSellPrice" #uSellPrice="ngModel" required>
+                                <span matPrefix>Rs.&nbsp;</span>
+                                <span matSuffix>.00</span>
+                                <mat-error *ngIf="uSellPrice.hasError('required')">required</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+
+                    <div class="form-row">
+
+                        <div class="col-3">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Uom</mat-label>
+                                <input matInput placeholder="Enter UoM" [(ngModel)]="updateUom" name="updateUom" #uUom="ngModel" required>
+                                <mat-error *ngIf="uUom.hasError('required')">required</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-9">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Bar Code</mat-label>
+                                <input matInput placeholder="Enter Bar Code" [(ngModel)]="updateBarCode" name="updateBarCode" #uBarCode="ngModel" required>
+                                <mat-error *ngIf="uBarCode.hasError('required')">required</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-12" style="text-align: right;">
+                            <button mat-raised-button class="cancelBtn" (click)="cancelUpdateItem()">Cancel</button>
+                            <button mat-raised-button type="submit" color="primary" class="updateBtn">Update</button>
+                        </div>
+                    </div>
+
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+</div>

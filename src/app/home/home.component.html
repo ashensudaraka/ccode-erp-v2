@@ -1,0 +1,280 @@
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+    <mat-toolbar color="primary">
+        <button mat-icon-button class="example-icon" (click)="snav.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span>COLOMBO CODE ERP</span>
+        <span class="example-spacer"></span>
+        <button mat-raised-button routerLink="/login">Logout</button>
+    </mat-toolbar>
+
+    <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+        <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" opened="true">
+            <mat-nav-list>
+
+                <mat-accordion>
+                    <mat-expansion-panel class="mat-elevation-z0" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Costing
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <mat-nav-list>
+                            <mat-divider></mat-divider>
+                            <mat-list-item>
+                                <mat-icon mat-list-icon>description</mat-icon>
+                                <a>Estimate</a>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item>
+                                <mat-icon mat-list-icon>receipt</mat-icon>
+                                <a>Quotation</a>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item>
+                                <mat-icon mat-list-icon>view_list</mat-icon>
+                                <a>Pre Costing</a>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item>
+                                <mat-icon mat-list-icon>monetization_on</mat-icon>
+                                <a>Cost Analysis</a>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+                        </mat-nav-list>
+                    </mat-expansion-panel>
+                </mat-accordion>
+
+
+
+                <mat-accordion>
+                    <mat-expansion-panel class="mat-elevation-z0" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Inventory
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <mat-nav-list>
+                            <mat-divider></mat-divider>
+                            <mat-list-item routerLink="/home/item">
+                                <mat-icon mat-list-icon>streetview</mat-icon>
+                                <a>Items</a>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item routerLink="/home/service">
+                                <mat-icon mat-list-icon>poll</mat-icon>
+                                <a>Services</a>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+                        </mat-nav-list>
+                    </mat-expansion-panel>
+                </mat-accordion>
+
+
+
+                <mat-accordion>
+                    <mat-expansion-panel class="mat-elevation-z0" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Purchasing
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <mat-nav-list>
+                            <mat-divider></mat-divider>
+                            <mat-list-item>
+                                <mat-icon mat-list-icon>poll</mat-icon>
+                                <a>Purchase Order</a>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item>
+                                <mat-icon mat-list-icon>chrome_reader_mode</mat-icon>
+                                <a>GRN</a>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+                        </mat-nav-list>
+                    </mat-expansion-panel>
+                </mat-accordion>
+
+
+
+                <mat-accordion>
+                    <mat-expansion-panel class="mat-elevation-z0" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Production
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <mat-nav-list>
+                            <mat-divider></mat-divider>
+                            <mat-list-item>
+                                <mat-icon mat-list-icon>border_horizontal</mat-icon>
+                                <a>Production Order</a>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item>
+                                <mat-icon mat-list-icon>show_chart</mat-icon>
+                                <a>Issues</a>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+                        </mat-nav-list>
+                    </mat-expansion-panel>
+                </mat-accordion>
+
+
+
+                <mat-accordion>
+                    <mat-expansion-panel class="mat-elevation-z0" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Sales
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <mat-nav-list>
+                            <mat-divider></mat-divider>
+                            <mat-list-item>
+                                <mat-icon mat-list-icon>notes</mat-icon>
+                                <a>Invoice</a>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item>
+                                <mat-icon mat-list-icon>format_list_numbered</mat-icon>
+                                <a>Credit Note</a>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item>
+                                <mat-icon mat-list-icon>format_line_spacing</mat-icon>
+                                <a>Delivery Note</a>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item>
+                                <mat-icon mat-list-icon>panorama_wide_angle</mat-icon>
+                                <a>Gate Pass</a>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+                        </mat-nav-list>
+                    </mat-expansion-panel>
+                </mat-accordion>
+
+
+                <mat-accordion>
+                    <mat-expansion-panel class="mat-elevation-z0" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Clients
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <mat-nav-list>
+                            <mat-divider></mat-divider>
+                            <mat-list-item routerLink="/home/client">
+                                <mat-icon mat-list-icon>group</mat-icon>
+                                <a>Clients Details</a>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+                        </mat-nav-list>
+                    </mat-expansion-panel>
+                </mat-accordion>
+
+
+                <mat-accordion>
+                    <mat-expansion-panel class="mat-elevation-z0" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Reports
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <mat-nav-list>
+                            <mat-divider></mat-divider>
+                            <mat-list-item>
+                                <mat-icon mat-list-icon>library_books</mat-icon>
+                                <a>Costing Reports</a>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item>
+                                <mat-icon mat-list-icon>library_books</mat-icon>
+                                <a>Inventory Reports</a>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item>
+                                <mat-icon mat-list-icon>library_books</mat-icon>
+                                <a>Purchasing reports</a>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item>
+                                <mat-icon mat-list-icon>library_books</mat-icon>
+                                <a>Production Reports</a>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item>
+                                <mat-icon mat-list-icon>library_books</mat-icon>
+                                <a>Sales Reports</a>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+                        </mat-nav-list>
+                    </mat-expansion-panel>
+                </mat-accordion>
+
+
+                <mat-accordion>
+                    <mat-expansion-panel class="mat-elevation-z0" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Settings
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <mat-nav-list>
+                            <mat-divider></mat-divider>
+                            <mat-list-item>
+                                <mat-icon mat-list-icon>account_circle</mat-icon>
+                                <a>User management</a>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+                        </mat-nav-list>
+                    </mat-expansion-panel>
+                </mat-accordion>
+
+
+                <mat-accordion>
+                    <mat-expansion-panel class="mat-elevation-z0" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Master Data
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <mat-nav-list>
+                            <mat-divider></mat-divider>
+                            <mat-list-item>
+                                <mat-icon mat-list-icon>dashboard</mat-icon>
+                                <a>Item Types</a>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item>
+                                <mat-icon mat-list-icon>settings_ethernet</mat-icon>
+                                <a>UoM</a>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item>
+                                <mat-icon mat-list-icon>room</mat-icon>
+                                <a>Country</a>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item>
+                                <mat-icon mat-list-icon>attach_money</mat-icon>
+                                <a>Currency</a>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+                        </mat-nav-list>
+                    </mat-expansion-panel>
+                </mat-accordion>
+
+
+            </mat-nav-list>
+        </mat-sidenav>
+
+        <mat-sidenav-content>
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+
+    </mat-sidenav-container>
+
+
+</div>

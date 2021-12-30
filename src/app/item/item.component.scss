@@ -1,0 +1,45 @@
+//Topbar
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.heading {
+    font-size: 25px;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+table {
+    width: 100%;
+}
+
+.mat-row:hover {
+    background-color: #f0f0f1;
+}
+
+//Detail area
+.detailHeading {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 550;
+}
+
+.optionsArea {
+    text-align: right;
+}
+
+.editBtn {
+    margin-right: 4px;
+}
+
+.displayItemArea,
+.addItemArea,
+.searchArea {
+    margin-top: 10px;
+}
+
+.cancelBtn {
+    margin-right: 5px;
+}
